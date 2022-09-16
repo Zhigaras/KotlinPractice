@@ -22,7 +22,6 @@ object Channels {
 
     fun getRandomChannels(amountOfChannels: Int): List<String> {
         val amountOfChannels = minOf(amountOfChannels, allChannels.size)
-        val channelList = allChannels.shuffled().slice(0 until amountOfChannels)
-        return channelList
+        return allChannels.shuffled().slice(0 until amountOfChannels)
     }
 }
