@@ -1,7 +1,8 @@
 class CreditVtbCard(balance: Double, private val bonusValue: Double) : CreditCard(balance) {
     private var bonusAccount: Double = 0.0
 
-    override fun pay() {
+    override fun pay(): Boolean {
+        var result = false
         println("\nEnter the payment price.")
         val price = readLine()?.toIntOrNull()
         if (price != null) {
@@ -25,9 +26,11 @@ class CreditVtbCard(balance: Double, private val bonusValue: Double) : CreditCar
                     if (price >= 5000.0) bonusAccount += bonusValue * price
                     println("The purchasing $price USD was successful.")
                 }
+                result = true
             }
         } else println("Wrong price amount.")
         getAvailableFund()
+        return result
     }
 
     override fun getAvailableFund() {

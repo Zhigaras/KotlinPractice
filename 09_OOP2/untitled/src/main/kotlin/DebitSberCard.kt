@@ -1,6 +1,7 @@
 class DebitSberCard(balance: Double, private val bonusValue: Double = 0.005) : DebitCard(balance) {
     private var bonusAccount: Double = 0.0
-    override fun pay() {
+    override fun pay(): Boolean {
+        var result = false
         println("\nEnter the payment price.")
         val price = readLine()?.toDoubleOrNull()
         if (price != null) {
@@ -10,6 +11,7 @@ class DebitSberCard(balance: Double, private val bonusValue: Double = 0.005) : D
                 bonusAccount -= bonusToWithdraw
                 balance -= (price - bonusToWithdraw)
                 println("The purchasing $price USD was successful.")
+                result = true
             } else {
                 println("Do you want to withdraw your bonus points? Y/N")
                 if (readLine()?.uppercase() == "Y") {
@@ -23,12 +25,14 @@ class DebitSberCard(balance: Double, private val bonusValue: Double = 0.005) : D
                     }
                 } else {
                     balance -= price
-                    println("The purchasing $price USD was successful.")
                     bonusAccount += price * bonusValue
                 }
+                println("The purchasing $price USD was successful.")
+                result = true
             }
         } else println("Wrong price amount.")
         getBalance()
+        return result
     }
 
     override fun getBalance() {

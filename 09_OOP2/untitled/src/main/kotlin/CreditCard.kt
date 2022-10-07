@@ -15,7 +15,8 @@ abstract class CreditCard(balance: Double, private val creditLimit: Double = 100
         getAvailableFund()
     }
 
-    override fun pay() {
+    override fun pay(): Boolean {
+        var result = false
         println("\nEnter the payment price.")
         val price = readLine()?.toIntOrNull()
         if (price != null) {
@@ -26,9 +27,11 @@ abstract class CreditCard(balance: Double, private val creditLimit: Double = 100
                 creditFunds += overDraft
                 ownFunds = maxOf(0.0, ownFunds)
                 println("The purchasing $price USD was successful.")
+                result = true
             }
         } else println("Wrong price amount.")
         getAvailableFund()
+        return result
     }
 
     override fun getAvailableFund() {

@@ -10,7 +10,8 @@ abstract class DebitCard(balance: Double) : BankCard(balance) {
         getBalance()
     }
 
-    override fun pay() {
+    override fun pay(): Boolean {
+        var result = false
         println("\nEnter the payment price.")
         val price = readLine()?.toIntOrNull()
         if (price != null) {
@@ -18,9 +19,11 @@ abstract class DebitCard(balance: Double) : BankCard(balance) {
             else {
                 balance -= price
                 println("The purchasing $price USD was successful.")
+                result = true
             }
         } else println("Wrong price amount.")
         getBalance()
+        return result
     }
 
     override fun getBalance() {

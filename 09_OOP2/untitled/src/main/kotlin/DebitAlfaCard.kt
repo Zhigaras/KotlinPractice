@@ -12,7 +12,8 @@ class DebitAlfaCard(balance: Double, private val bonusValue: Double = 0.01) : De
         getBalance()
     }
 
-    override fun pay() {
+    override fun pay(): Boolean {
+        var result = false
         println("\nEnter the payment price.")
         val price = readLine()?.toDoubleOrNull()
         if (price != null) {
@@ -23,9 +24,11 @@ class DebitAlfaCard(balance: Double, private val bonusValue: Double = 0.01) : De
                 balance += overDraft
                 bonusAccount = maxOf(0.0, bonusAccount)
                 println("The purchasing $price USD was successful.")
+                result = true
             }
         } else println("Wrong price amount.")
         getBalance()
+        return result
     }
 
     override fun getBalance() {
