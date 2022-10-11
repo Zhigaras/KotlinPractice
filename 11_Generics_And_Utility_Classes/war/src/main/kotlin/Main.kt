@@ -1,3 +1,5 @@
+import kotlin.random.Random
+
 fun main() {
 
     println("Enter the number of warriors in each team:")
@@ -26,4 +28,8 @@ fun main() {
     for (warrior in redTeam) warrior.clutch(warrior, blueTeam[0])
 
 
+}
+
+fun Int.chance(): Boolean {
+    return this >= Random.nextInt(1, 101)
 }

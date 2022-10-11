@@ -8,13 +8,9 @@ enum class Ammo(
     SMG(4, 30, 1.4),
     AR(8, 50, 1.8);
 
-    private fun Int.isCritical(): Boolean {
-        return this >= Random.nextInt(1,101)
-    }
-
     fun getDamage(): Double {
         var hitDamage = damage.toDouble()
-        if (criticalHitChance.isCritical()) hitDamage = damage * criticalDamageRatio
+        if (criticalHitChance.chance()) hitDamage = damage * criticalDamageRatio
         return hitDamage
     }
 }

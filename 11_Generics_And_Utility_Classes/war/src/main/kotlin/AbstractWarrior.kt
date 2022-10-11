@@ -11,7 +11,7 @@ abstract class AbstractWarrior : Warrior {
         var firedBullets = mutableListOf<Double>()
         if (weapon.isLoaded) {
         for (item in weapon.toShoot()) {
-            if (accuracy.hitHappened()) firedBullets.add(item.getDamage())
+            if (accuracy.chance()) firedBullets.add(item.getDamage())
             }
         }
         else weapon.reload()
@@ -20,11 +20,8 @@ abstract class AbstractWarrior : Warrior {
 
     override fun takeDamage(firedBullets: MutableList<Double>) {
         for (item in firedBullets){
-            if (!dodgeChance.hitHappened()) currentHP -= item
+            if (!dodgeChance.chance()) currentHP -= item
         }
 }
 
-    private fun Int.hitHappened(): Boolean {
-        return this >= Random.nextInt(1, 101)
-    }
 }
