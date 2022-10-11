@@ -1,0 +1,5 @@
+class Battle(warriorsAmount: Int) {
+
+
+
+}
