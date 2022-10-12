@@ -1,19 +1,18 @@
 import kotlin.random.Random
 
-class Team(warriorsAmount: Int?) {
+class Team(val name: String, warriorsAmount: Int) {
 
-    companion object {
+    val team = mutableListOf<AbstractWarrior>()
 
-        fun createTeam(warriorsAmount: Int): MutableList<AbstractWarrior> {
-            val team = mutableListOf<AbstractWarrior>()
-            for (i in 1..warriorsAmount) {
-                when (Random.nextInt(1, 101)) {
-                    in (1..2) -> team.add(General())
-                    in (3..4) -> team.add(Captain())
-                    else -> team.add(Soldier())
-                }
+    init {
+
+        for (i in 1..warriorsAmount) {
+            when (true) {
+                1.chance() -> team.add(General())
+                2.chance() -> team.add(Captain())
+                else -> team.add(Soldier())
             }
-            return team
         }
     }
 }
+

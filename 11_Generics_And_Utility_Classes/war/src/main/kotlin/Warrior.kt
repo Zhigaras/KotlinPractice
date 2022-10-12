@@ -6,6 +6,6 @@ interface Warrior {
     val weapon: Weapon
     var currentHP: Double
 
-    fun attack (): MutableList<Double>
-    fun takeDamage (firedBullets: MutableList<Double>)
+    fun attack (attacker: AbstractWarrior, victim: AbstractWarrior)
+    //fun takeDamage (firedBullets: MutableList<Double>)
 }
