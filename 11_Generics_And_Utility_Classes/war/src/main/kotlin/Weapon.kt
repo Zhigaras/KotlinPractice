@@ -14,7 +14,6 @@ abstract class Weapon(
     fun reload() {
         magazine.clear()
         for (i in 1..maxBullets) magazine.push(createAmmo())
-        isLoaded = magazine.isNotEmpty()
     }
 
     fun toShoot(): MutableList<Ammo> {

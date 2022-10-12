@@ -9,15 +9,17 @@ fun main() {
         if (warriorsAmount == null) println("Incorrect input. Try again.")
     } while (warriorsAmount == null)
 
-    var redTeam = Team("Red",warriorsAmount).team
-    var blueTeam = Team("Blue",1).team
+    val battle = Battle(warriorsAmount)
+    do {
+        println("\nIteration №${battle.iteration}\n")
+        battle.clutch()
+        battle.iteration += 1
+        battle.getBattleState()
 
-
-
-
-    for (warrior in redTeam) warrior.attack(warrior, blueTeam[0])
+    } while (!battle.isOver)
 }
 
 fun Int.chance(): Boolean {
     return this >= Random.nextInt(1, 101)
 }
+

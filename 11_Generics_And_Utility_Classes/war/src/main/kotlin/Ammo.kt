@@ -1,12 +1,11 @@
-import kotlin.random.Random
 
 enum class Ammo(
     private val damage: Int,
     private val criticalHitChance: Int,
     private val criticalDamageRatio: Double) {
-    PISTOL(2, 10, 1.2),
-    SMG(4, 30, 1.4),
-    AR(8, 50, 1.8);
+    PISTOL(7, 40, 2.4),
+    SMG(8, 45, 2.2),
+    AR(8, 50, 2.0);
 
     fun getDamage(): Double {
         var hitDamage = damage.toDouble()

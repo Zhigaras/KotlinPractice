@@ -1,9 +1,10 @@
 class General : AbstractWarrior() {
-    override var maxHP: Double = 200.0
+    override val rank = "General"
+    override var maxHP: Double = 40.0
     override val accuracy = 95
     override val weapon = Weapons.createAR()
     override var currentHP = maxHP
-    override val isKilled = false
-    override val dodgeChance = 70
+    override var isAlive = true
+    override val dodgeChance = 20
 
 }

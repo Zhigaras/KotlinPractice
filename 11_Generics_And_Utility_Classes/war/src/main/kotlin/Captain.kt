@@ -1,9 +1,10 @@
 class Captain : AbstractWarrior() {
-    override var maxHP: Double = 100.0
-    override val accuracy = 80
+    override val rank = "Captain"
+    override var maxHP: Double = 30.0
+    override val accuracy = 90
     override val weapon = Weapons.createSMG()
     override var currentHP = maxHP
-    override val isKilled = false
-    override val dodgeChance = 50
+    override var isAlive = true
+    override val dodgeChance = 15
 
 }

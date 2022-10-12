@@ -1,9 +1,10 @@
 class Soldier : AbstractWarrior() {
-    override var maxHP: Double = 50.0
-    override val accuracy = 100
+    override val rank = "Soldier"
+    override var maxHP: Double = 20.0
+    override val accuracy = 85
     override val weapon = Weapons.createPistol()
     override var currentHP = maxHP
-    override val isKilled = false
-    override val dodgeChance = 0
+    override var isAlive = true
+    override val dodgeChance = 10
 
 }
