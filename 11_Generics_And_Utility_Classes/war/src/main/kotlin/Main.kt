@@ -11,14 +11,14 @@ fun main() {
 
     val battle = Battle(teamSize)
     var iteration = 1
+
+    println()
     do {
         println("\n============================")
         println("Iteration №${iteration}\n============================")
-        clutch(battle.team1, battle.team2)
-        battle.getBattleState()
+        battle.clutch(battle.team1, battle.team2)
         if (!battle.isOver) {
-            clutch(battle.team2, battle.team1)
-            battle.getBattleState()
+            battle.clutch(battle.team2, battle.team1)
         }
         iteration += 1
     } while (!battle.isOver)
