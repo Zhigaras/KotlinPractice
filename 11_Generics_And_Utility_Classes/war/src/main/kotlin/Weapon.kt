@@ -17,7 +17,7 @@ abstract class Weapon(
     }
 
     fun toShoot(): MutableList<Ammo> {
-        var firedBullets = mutableListOf<Ammo>()
+        val firedBullets = mutableListOf<Ammo>()
         val amountOfBullets: Int = when (fireType) {
             is FireType.SingleShot -> 1
             is FireType.BurstShot -> fireType.burstSize

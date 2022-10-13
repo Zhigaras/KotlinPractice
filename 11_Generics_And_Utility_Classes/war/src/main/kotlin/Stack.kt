@@ -1,7 +1,7 @@
 import java.util.Stack
 
 class Stack<T> {
-    var stack = Stack<T>()
+    private var stack = Stack<T>()
 
     fun push(item: T) {
         stack.add(item)

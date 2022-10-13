@@ -1,5 +1,4 @@
-class Team(name: String, warriorsAmount: Int) {
-    val name = name
+class Team(val name: String, warriorsAmount: Int) {
 
     val teamList = mutableListOf<AbstractWarrior>()
     init {
@@ -10,12 +9,17 @@ class Team(name: String, warriorsAmount: Int) {
                 else -> teamList.add(Soldier())
             }
         }
-        println("\nThe $name team:")
-        teamList.forEach { println("${it.rank} - ${it.currentHP} HP.")  }
-        //println(getOverallHP())
+        printInfo()
     }
 
-    fun getOverallHP() : Double {
+    fun printInfo() {
+        println("\nThe \"$name\" team:")
+        teamList.forEach { println("${it.rank} - ${String.format("%.1f", it.currentHP)} HP.")  }
+        println("------------------")
+        println("Overall - ${String.format("%.1f", getOverallHP())} HP.")
+    }
+
+    private fun getOverallHP() : Double {
         var overallHP = 0.0
         teamList.forEach{overallHP += it.currentHP}
         return overallHP

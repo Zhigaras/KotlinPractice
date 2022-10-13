@@ -7,8 +7,6 @@ object Weapons {
             magazine = Stack(),
             isLoaded = false
         ) {
-            //override val isLoaded = magazine.isNotEmpty()
-
             override fun createAmmo(): Ammo {
                 return Ammo.PISTOL
             }
@@ -23,8 +21,6 @@ object Weapons {
             magazine = Stack(),
             isLoaded = false
         ) {
-            //override val isLoaded = magazine.isNotEmpty()
-
             override fun createAmmo(): Ammo {
                 return Ammo.SMG
             }
@@ -39,8 +35,6 @@ object Weapons {
             magazine = Stack(),
             isLoaded = false
         ) {
-            //override val isLoaded = magazine.isNotEmpty()
-
             override fun createAmmo(): Ammo {
                 return Ammo.AR
             }

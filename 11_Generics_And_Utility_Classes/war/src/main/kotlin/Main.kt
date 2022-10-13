@@ -11,11 +11,15 @@ fun main() {
 
     val battle = Battle(warriorsAmount)
     do {
-        println("\nIteration №${battle.iteration}\n")
-        battle.clutch()
-        battle.iteration += 1
+        println("\n============================")
+        println("Iteration №${battle.iteration}\n============================")
+        clutch(battle.team1, battle.team2)
         battle.getBattleState()
-
+        if (!battle.isOver) {
+            clutch(battle.team2, battle.team1)
+            battle.getBattleState()
+            battle.iteration += 1
+        }
     } while (!battle.isOver)
 }
 
