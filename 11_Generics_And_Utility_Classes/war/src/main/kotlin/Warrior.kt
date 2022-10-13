@@ -6,5 +6,4 @@ interface Warrior {
     val accuracy: Int
     val weapon: Weapon
     var currentHP: Double
-
 }
