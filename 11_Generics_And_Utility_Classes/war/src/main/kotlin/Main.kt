@@ -12,10 +12,9 @@ fun main() {
     val battle = Battle(teamSize)
     var iteration = 1
 
-    println()
     do {
-        println("\n============================")
-        println("Iteration №${iteration}\n============================")
+        println("\n==========================")
+        println("       Iteration №${iteration}\n==========================")
         battle.clutch(battle.team1, battle.team2)
         if (!battle.isOver) {
             battle.clutch(battle.team2, battle.team1)

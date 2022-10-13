@@ -19,5 +19,4 @@ class Stack<T> {
     fun clear() {
         return stack.clear()
     }
-
 }

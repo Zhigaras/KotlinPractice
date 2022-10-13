@@ -1,4 +1,3 @@
-
 enum class Ammo(
     private val damage: Int,
     private val criticalHitChance: Int,

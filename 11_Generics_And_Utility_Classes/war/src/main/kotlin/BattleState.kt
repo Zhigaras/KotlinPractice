@@ -2,22 +2,22 @@ sealed class BattleState {
 
     class Progress(team1: Team, team2: Team) : BattleState() {
         init {
-            team1.printTeamInfo()
-            team2.printTeamInfo()
+            println("\nThe battle continues." +
+                    "\nThe \"${team1.name}\" team has ${team1.teamList.size} warriors." +
+                    "\nthe \"${team2.name}\" team has ${team2.teamList.size} warriors." +
+                    "\nNext turn.")
         }
     }
 
-    class Team1Win(team1: Team) : BattleState() {
+    class Team1Win(team: Team) : BattleState() {
         init {
-            println("Congratulations! The \"${team1.name}\" team won!")
+            println("Congratulations! The \"${team.name}\" team won!")
         }
     }
 
-    class Team2Win(team2: Team) : BattleState() {
+    class Team2Win(team: Team) : BattleState() {
         init {
-            println("Congratulations! The \"${team2.name}\" team won!")
+            println("Congratulations! The \"${team.name}\" team won!")
         }
     }
-
-
 }
