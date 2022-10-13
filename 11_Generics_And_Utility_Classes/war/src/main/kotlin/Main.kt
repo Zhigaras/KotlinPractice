@@ -3,23 +3,24 @@ import kotlin.random.Random
 fun main() {
 
     println("Enter the number of warriors in each team:")
-    var warriorsAmount: Int?
+    var teamSize: Int?
     do {
-        warriorsAmount = readLine()?.toIntOrNull()
-        if (warriorsAmount == null) println("Incorrect input. Try again.")
-    } while (warriorsAmount == null)
+        teamSize = readLine()?.toIntOrNull()
+        if (teamSize == null) println("Incorrect input. Try again.")
+    } while (teamSize == null)
 
-    val battle = Battle(warriorsAmount)
+    val battle = Battle(teamSize)
+    var iteration = 1
     do {
         println("\n============================")
-        println("Iteration №${battle.iteration}\n============================")
+        println("Iteration №${iteration}\n============================")
         clutch(battle.team1, battle.team2)
         battle.getBattleState()
         if (!battle.isOver) {
             clutch(battle.team2, battle.team1)
             battle.getBattleState()
-            battle.iteration += 1
         }
+        iteration += 1
     } while (!battle.isOver)
 }
 

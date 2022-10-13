@@ -2,8 +2,8 @@ sealed class BattleState {
 
     class Progress(team1: Team, team2: Team) : BattleState() {
         init {
-            team1.printInfo()
-            team2.printInfo()
+            team1.printTeamInfo()
+            team2.printTeamInfo()
         }
     }
 

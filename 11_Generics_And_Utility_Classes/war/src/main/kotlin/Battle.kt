@@ -1,9 +1,8 @@
-class Battle(warriorsAmount: Int) {
+class Battle(teamSize: Int) {
 
-    var team1 = Team("Red", warriorsAmount)
-    var team2 = Team("Blue", warriorsAmount)
+    var team1 = Team("Red", teamSize)
+    var team2 = Team("Blue", teamSize)
     var isOver: Boolean = false
-    var iteration = 1
 
     fun getBattleState(): BattleState {
         return if (team1.teamList.isEmpty()) {
