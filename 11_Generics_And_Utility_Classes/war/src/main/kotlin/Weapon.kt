@@ -1,9 +1,7 @@
-
 abstract class Weapon(
     val maxBullets: Int,
     val fireType: FireType,
     val magazine: Stack<Ammo>,
-    var isLoaded: Boolean
 ) {
     init {
         reload()
@@ -22,7 +20,8 @@ abstract class Weapon(
             is FireType.SingleShot -> 1
             is FireType.BurstShot -> fireType.burstSize
         }
-        for (i in 1..amountOfBullets) {
+        if (amountOfBullets > magazine.size()) throw NoAmmoException()
+        else for (i in 1..amountOfBullets) {
             magazine.pop()?.let { firedBullets.add(it) }
         }
         return firedBullets

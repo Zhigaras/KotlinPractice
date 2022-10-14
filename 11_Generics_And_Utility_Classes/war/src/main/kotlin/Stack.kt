@@ -12,11 +12,11 @@ class Stack<T> {
         else stack.pop()
     }
 
-    fun isNotEmpty(): Boolean {
-        return stack.isNotEmpty()
-    }
-
     fun clear() {
         return stack.clear()
+    }
+
+    fun size(): Int {
+        return stack.size
     }
 }

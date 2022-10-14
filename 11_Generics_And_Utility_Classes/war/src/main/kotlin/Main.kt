@@ -27,3 +27,4 @@ fun Int.chance(): Boolean {
     return this >= Random.nextInt(1, 101)
 }
 
+class NoAmmoException : Throwable("Not enough ammo. Need to reload.")
