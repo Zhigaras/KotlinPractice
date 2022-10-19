@@ -27,11 +27,11 @@ fun main(): Unit = runBlocking {
 object Fibonacci {
     suspend fun take(number: Int): BigInteger {
         return withTimeout(2000L) {
-            yield()
             var fPrevPrev = 0.toBigInteger()
             var fPrev = 1.toBigInteger()
             var fibo = 0.toBigInteger()
             for (i in 3..number) {
+                yield()
                 fibo = fPrevPrev + fPrev
                 fPrevPrev = fPrev
                 fPrev = fibo
