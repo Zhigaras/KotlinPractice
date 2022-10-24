@@ -2,74 +2,36 @@ import kotlinx.coroutines.*
 
 fun main() {
 
-    val numberOfPlayers = inputRequest(10, "players")
-    val numberOfCards = inputRequest(5, "cards")
+    val numberOfPlayers = inputRequest(100, "players")
+    val numberOfCards = inputRequest(50, "cards")
     val team = Team(numberOfPlayers, numberOfCards)
 
     team.printTeamCards()
 
     runBlocking {
-        println("The game started.")
-        var counter = 0
-        Generator.sharedFlow.collect { generatedNumber ->
-            counter++
-            println("$counter number - $generatedNumber")
-            team.playersList.forEachIndexed { playerIndex, player ->
-                team.jobList[playerIndex] = launch {
-                    player.checkNumber(generatedNumber)
-                    team.jobList.forEach { yield() }
-                    if (player.isWinner) {
-                        println("Player ${player.playerID} won!")
-                        team.jobList.forEach { cancel() }
+        launch {
+            println("The game started.")
+            var counter = 0
+            Generator.sharedFlow.collect { generatedNumber ->
+                counter++
+                println("$counter number - $generatedNumber")
+                team.playersList.forEach { player ->
+                    launch {
+                        player.checkNumber(generatedNumber)
+                        if (player.isWinner) {
+                            team.hasWinnner = true
+                        }
+                        cancel()
                     }
+                }
+                delay(200)
+                if (team.hasWinnner) {
+                    team.printWinner()
+                    cancel()
                 }
             }
         }
     }
-    team.printTeamCards()
-
-
-
-    /*runBlocking {
-        var counter = 1
-        Generator.sharedFlow.collect { generatedNumber ->
-            yield()
-            println("number - $generatedNumber")
-            team.playersList.forEachIndexed { playerIndex, player ->
-                team.jobList[playerIndex] = launch {
-                    counter++
-                    player.checkNumber(generatedNumber)
-                    yield()
-                    if (player.isWinner) team.jobList.forEach { cancel() }
-                }
-            }
-        }
-        team.jobList.joinAll()
-        team.printTeamCards()
-    }*/
-
-
-    /*runBlocking {
-        println("The game started.")
-        var counter = 0
-        while (currentCoroutineContext().isActive) {
-            Generator.sharedFlow.collect { generatedNumber ->
-                counter++
-                println("$counter number - $generatedNumber")
-                team.playersList.forEachIndexed { index, player ->
-                    val job = launch {
-                        player.checkNumber(generatedNumber)
-                        delay(100)
-                        team.getGameState()
-                    }
-                    if (player.isWinner)
-                        job.cancel()
-                }
-            }
-        }
-        team.printTeamCards()
-    }*/
-
 }
 
 fun inputRequest(maxNumber: Int, requestItem: String): Int {

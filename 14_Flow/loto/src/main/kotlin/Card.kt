@@ -3,6 +3,7 @@ import kotlin.random.Random
 class Card(var cardID: Int) {
 
     var card = Array(3) { Array(9) { Number(null) } }
+    var isWinning = false
 
     init {
         card = fillCard().sortCells().deleteRedundant()
@@ -28,7 +29,7 @@ class Card(var cardID: Int) {
 
     private fun Array<Array<Int>>.hasTheSame(element: Int): Boolean {
         var result = false
-        this.forEach { it.forEach { if (it == element) result = true } }
+        this.forEach { row -> row.forEach { if (it == element) result = true } }
         return result
     }
 
@@ -54,14 +55,15 @@ class Card(var cardID: Int) {
             for (i in 1..4) it
                 .filter { it.value != null }
                 .random()
-                .let { it.value = null
-                it.isMarkered = true}
-
+                .let {
+                    it.value = null
+                    it.isMarkered = true
+                }
         }
         return this
     }
 
-    fun printCardNumbers() {
+    fun printCard() {
         print("┌──")
         for (i in 1 until card[0].size) print("──┬──")
         println("──┐")

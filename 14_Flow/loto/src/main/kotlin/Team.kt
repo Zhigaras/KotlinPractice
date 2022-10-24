@@ -1,14 +1,17 @@
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.NonCancellable.cancel
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class Team(numberOfPlayers: Int, numberOfCards: Int) {
     val playersList = mutableListOf<Player>()
-    val jobList = mutableListOf<Job>()
+    var hasWinnner = false
 
     init {
-        for (i in 1..numberOfPlayers) {
-            playersList.add(Player(numberOfCards, i))
-            jobList.add(Job())
+        runBlocking {
+            for (i in 1..numberOfPlayers) {
+                launch {
+                    playersList.add(Player(numberOfCards, i))
+                }
+            }
         }
     }
 
@@ -16,22 +19,23 @@ class Team(numberOfPlayers: Int, numberOfCards: Int) {
         playersList.forEach { player ->
             player.cardsList.forEach { card ->
                 println("Player ${player.playerID}, card ${card.cardID}")
-                card.printCardNumbers()
+                card.printCard()
             }
         }
     }
 
-    fun getGameState() {
+    fun printWinner() {
         playersList.forEach { player ->
             player.cardsList.forEach { card ->
-                card.card.forEach { row ->
-                    if (row.all { number: Number -> number.isMarkered }) {
-                        player.isWinner = true
-                        //return GameState.Winner(player, card)
-                    }
+                if (player.isWinner && card.isWinning) {
+                    println(
+                        "STOP GAME! We have a winner!! " +
+                                "Player ${player.playerID} won with card ${card.cardID}! "
+                    )
+                    println("Winning card:")
+                    card.printCard()
                 }
             }
         }
-        //return GameState.Progress
     }
 }

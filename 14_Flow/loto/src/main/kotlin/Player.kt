@@ -13,7 +13,10 @@ class Player(numberOfCards: Int, var playerID: Int) {
             card.card.forEach { row ->
                 row.forEach { number ->
                     if (number.value == generatedNumber) number.isMarkered = true
-                    if (row.all { it.isMarkered }) isWinner = true
+                    if (row.all { it.isMarkered }) {
+                        isWinner = true
+                        card.isWinning = true
+                    }
                 }
             }
         }
